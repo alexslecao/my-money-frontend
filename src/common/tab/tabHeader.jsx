@@ -8,7 +8,7 @@ import { selectTab } from "./tabActions";
 class TabHeader extends Component {
     render() {
         
-        const selected = this.props.tab.selected == this.props.target;
+        const selected = this.props.tab.selected === this.props.target;
       
         return (
             <li className={selected && 'active'}>
