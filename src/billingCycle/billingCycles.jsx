@@ -10,14 +10,18 @@ import TabsContent from "../common/tab/tabsContent";
 import TabHeader from "../common/tab/tabHeader";
 import TabContent from "../common/tab/tabContent";
 import { selectTab, showTabs } from "../common/tab/tabActions";
+import { getList } from "./billingCycleActions";
 
 class BillingCycle extends Component {
     componentWillMount() {
         this.props.selectTab('tabList');
         this.props.showTabs('tabList', 'tabCreate');
+
+        this.props.getList();
     }
     
     render() {
+        //console.log(this.props.billingCycleList);
         return (
             <div>
                 <ContentHeader title="Ciclo de Pagamento" small="Cadastro" />
@@ -42,6 +46,10 @@ class BillingCycle extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs }, dispatch);
+const mapStateToProps = state => ({
+    billingCycleList: state.billingCycle
+});
 
-export default connect(null, mapDispatchToProps)(BillingCycle);
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, getList }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycle);
